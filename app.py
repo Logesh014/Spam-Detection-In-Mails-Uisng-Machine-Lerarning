@@ -4,8 +4,8 @@ import os
 
 app = Flask(__name__)
 
-# Define the directory where model and vectorizer files are stored
-BASE_DIR = 'c:/Users/HP/OneDrive/Desktop/SPAM DETECTION IN MAILS USING ML'
+# Define the base directory dynamically
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Load your trained model
 model_path = os.path.join(BASE_DIR, 'model.pkl')
