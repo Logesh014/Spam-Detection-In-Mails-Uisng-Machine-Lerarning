@@ -10,12 +10,11 @@
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(to bottom right, #6a11cb, #2575fc);
             margin: 0;
-            padding: 0;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            justify-content: center; /* Centers horizontally */
+            align-items: center;    /* Centers vertically */
+            height: 100vh;          /* Full viewport height */
+            overflow: hidden;       /* Prevents scrolling */
         }
 
         /* Background Graphics */
@@ -58,6 +57,7 @@
             position: relative;
             z-index: 2;
             animation: fadeIn 1.5s ease-in-out;
+            margin: 0 auto; /* Ensures no offset */
         }
 
         @keyframes fadeIn {
@@ -75,7 +75,7 @@
         h1 {
             color: #333;
             font-size: 36px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             letter-spacing: 1px;
             animation: slideDown 1s ease-out;
         }
@@ -89,6 +89,15 @@
                 transform: translateY(0);
                 opacity: 1;
             }
+        }
+
+        /* Description */
+        .description {
+            color: #555;
+            font-size: 18px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            animation: fadeIn 1.5s ease-in-out;
         }
 
         /* Textarea */
@@ -151,11 +160,14 @@
     </style>
 </head>
 <body>
+    <!-- Background Shapes -->
     <div class="background-shape"></div>
     <div class="background-shape"></div>
 
+    <!-- Container -->
     <div class="container">
         <h1>Spam Detection</h1>
+        <p class="description">Easily identify whether an email is spam or legitimate by entering the email content below. Our AI-powered detection system ensures fast and accurate results.</p>
         <form method="POST" action="/predict">
             <textarea name="email" placeholder="Enter email content here..."></textarea>
             <br>

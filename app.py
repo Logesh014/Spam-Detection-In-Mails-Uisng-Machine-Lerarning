@@ -9,19 +9,23 @@ BASE_DIR = 'c:/Users/HP/OneDrive/Desktop/SPAM DETECTION IN MAILS USING ML'
 
 # Load your trained model
 model_path = os.path.join(BASE_DIR, 'model.pkl')
-if os.path.exists(model_path):
+try:
     with open(model_path, 'rb') as model_file:
         model = pickle.load(model_file)
-else:
+except FileNotFoundError:
     raise FileNotFoundError(f"Model file not found at {model_path}")
+except Exception as e:
+    raise Exception(f"An error occurred while loading the model: {e}")
 
 # Load your vectorizer
 vectorizer_path = os.path.join(BASE_DIR, 'vectorizer.pkl')
-if os.path.exists(vectorizer_path):
+try:
     with open(vectorizer_path, 'rb') as vec_file:
         vectorizer = pickle.load(vec_file)
-else:
+except FileNotFoundError:
     raise FileNotFoundError(f"Vectorizer file not found at {vectorizer_path}")
+except Exception as e:
+    raise Exception(f"An error occurred while loading the vectorizer: {e}")
 
 @app.route('/')
 def home():
@@ -36,7 +40,7 @@ def predict():
         result = 'Ham mail' if prediction[0] == 1 else 'Spam mail'
         return render_template('index.html', prediction=result)
     except Exception as e:
-        return f"An error occurred: {e}"
+        return render_template('index.html', error=f"An error occurred: {e}")
 
 if __name__ == '__main__':
     app.run(debug=True)
